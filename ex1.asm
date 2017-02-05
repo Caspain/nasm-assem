@@ -1,4 +1,4 @@
-%include 'utility_funcs.asm'
+%include 'funcs.asm'
 section .data
  	sys_write equ 4
 	sys_read equ 3
@@ -28,11 +28,14 @@ section .text
 			int 0x80
 			
 				
-		print:	
+		print: 
+			mov eax,input	
+			;call slen
+			mov ecx,eax
+			mov edx,255
 			mov eax,sys_write
 			mov ebx,stdout
-			mov edx,255
-			mov ecx,input
+			
 			int 0x80
 			
 		mov eax,sys_exit

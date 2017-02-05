@@ -2,11 +2,12 @@
 ;calculates the length of a string
 
 slen:
+	pop eax
 	mov ebx,eax
 	push ebx
 
 nextChar:
-	cmp byte[eax],0
+	cmp byte [eax],0
 	jz done
 	inc eax
 	jmp nextChar
