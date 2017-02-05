@@ -1,3 +1,4 @@
+%include 'utility_funcs.asm'
 section .data
  	sys_write equ 4
 	sys_read equ 3
