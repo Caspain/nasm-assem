@@ -1,6 +1,4 @@
-
-;global add
-;extern printf
+global printEquation
 global printFamily
 global printPid
 section .data
@@ -11,14 +9,6 @@ section .data
         stdout equ 1
 section .text
 
-;add:
-    ;enter
-  ;pushad
-    ;mov   eax, [esp+4]   ; argument 1
-    ;add   eax, [esp+8]   ; argument 2
-    ;popad
-    ;leave
-    ;ret
 printFamily:
 push ebp
 mov ebp,esp
@@ -38,6 +28,29 @@ int 0x80                  ; execute
 mov esp,ebp
 pop ebp
 ret
+
+printEquation:
+;push ebp
+;mov ebp,esp
+;pushad
+mov eax,[esp + 12] ;z
+imul eax,[esp + 20] ;z * b
+add eax,[esp + 24];  (z * b) + c
+mov ecx,eax ; ecx= eax (9)
+
+mov eax,[esp + 16];
+mov edx,0 ;a
+mov esi,[esp + 8]
+div  esi; (a /y)
+sub eax,[esp + 4]; (a/y)-x
+add ecx,eax
+mov eax,ecx
+
+
+;mov esp,ebp
+;pop ebp
+;popad
+ret	
 
 quit:
     mov eax,sys_exit
