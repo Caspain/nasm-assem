@@ -1,0 +1,3 @@
+nasm -f elf add.asm 
+gcc -Wall main.c add.o 
+./a.out 
